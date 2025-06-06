@@ -1,33 +1,54 @@
 {% load django_browser_reload %}
 {% load static %}
 
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="GitHub Codespaces ♥️ Django">
-    <meta name="author" content="GitHub Codespaces">
-    <meta name="generator" content="GitHub Codespaces">
-    <meta name="theme-color" content="#000000">
-    <title>{% block title %}{{ title }} | GitHub Codespaces ♥️ Django{% endblock %}</title>
-    
-    <link rel="stylesheet" href="{% static 'main.css' %}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClickEstudo | PUC-Rio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <div class="App">
-        <header class="App-header">
-            <img src="{% static 'Octocat.png' %}" class="App-logo" alt="logo" />
-            <p>
-                GitHub Codespaces <span class="heart">♥️</span> Django
-            </p>
-            <p class="small">
-                Edit <code>hello_world/templates/index.html</code> and see changes live!
-            </p>
-        </header>
-    </div>
-</body>
+  <header>
+    <h1>ClickEstudo 📚</h1>
+    <p>Feito de alunos para alunos da PUC-Rio</p>
+  </header>
 
+  <main>
+    <section class="intro">
+      <h2>O que é o ClickEstudo?</h2>
+      <p>
+        Um espaço online colaborativo para armazenar provas antigas, resumos, anotações e slides das matérias da PUC-Rio. Com fóruns para dúvidas, avaliações de professores e até troca e venda de materiais.
+      </p>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <h3>📄 Provas Antigas</h3>
+        <p>Busque por disciplina, período e professor.</p>
+      </div>
+      <div class="card">
+        <h3>📝 Resumos e Anotações</h3>
+        <p>Compartilhe e baixe conteúdos feitos por alunos.</p>
+      </div>
+      <div class="card">
+        <h3>💬 Fórum de Dúvidas</h3>
+        <p>Interaja com colegas e tire dúvidas de matéria.</p>
+      </div>
+      <div class="card">
+        <h3>📢 Avaliação de Professores</h3>
+        <p>Veja opiniões anônimas sobre professores e disciplinas.</p>
+      </div>
+      <div class="card">
+        <h3>🔁 Troca e Venda de Materiais</h3>
+        <p>Divulgue ou procure livros, calculadoras, etc.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ClickEstudo | Feito com 💖 por alunos da PUC-Rio</p>
+  </footer>
+</body>
 </html>
