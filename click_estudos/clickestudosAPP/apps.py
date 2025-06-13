@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ClickestudosConfig(AppConfig):
+class ClickestudosappConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "clickestudos"
+    name = "clickestudosAPP"
