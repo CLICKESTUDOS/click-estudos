@@ -127,3 +127,6 @@ CSRF_TRUSTED_ORIGINS = [
     'https://friendly-robot-g4p5j4j9jjjvcwrqg-8000.app.github.dev',
     'https://localhost:8000',
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
