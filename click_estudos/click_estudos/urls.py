@@ -1,22 +1,10 @@
-"""
-URL configuration for click_estudos project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
+from django.contrib.auth import views as auth_views
+from django.urls import path, include
 from clickestudosAPP import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +12,10 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('logout/', views.logout_view, name='logout'),
     path('cadastro/', views.cadastro, name='cadastro'),
-    path('disciplina/', views.disciplina, name='disciplina')
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('upload/', views.upload_material, name='upload_material'),
+    path('material/<int:pk>/deletar/', views.deletar_material, name='deletar_material')
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

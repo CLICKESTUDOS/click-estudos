@@ -1,0 +1,62 @@
+/* dashboard.css */
+
+/* Evita que o conteúdo centralize verticalmente */
+body {
+  display: block;
+  min-height: 100%;
+  background-color: #121212;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+main {
+  margin-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+/* Estilo do formulário de upload */
+.card.card-body {
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.3);
+}
+
+input.form-control,
+textarea.form-control {
+  background-color: #2c2c2c;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+input.form-control:focus,
+textarea.form-control:focus {
+  background-color: #3a3a3a;
+  border-color: #ffc107;
+  box-shadow: 0 0 0 0.2rem rgba(255,193,7,0.25);
+}
+
+/* Estilização dos cards de materiais */
+.card {
+  background-color: #2c2c2c;
+  border: none;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-footer {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  background-color: transparent;
+}
+
+.btn-warning,
+.btn-info {
+  font-weight: bold;
+}
+
+/* Navbar logo */
+.navbar-brand img {
+  height: 30px;
+  border-radius: 4px;
+}

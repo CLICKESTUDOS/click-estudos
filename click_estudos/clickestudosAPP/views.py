@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-
+from django.contrib.auth.decorators import login_required
+from .models import Material
+from .forms import MaterialForm
 
 def index(request):
     if request.method == 'POST':
@@ -13,28 +15,45 @@ def index(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('home')  # Redirecionar para dashboard após login
         else:
-            messages.error(request, 'E-mail ou senha incorretos.')
+            messages.error(request, 'Usuário ou senha incorretos.')
 
     return render(request, 'clickestudosAPP/index.html')
 
+@login_required
 def dashboard(request):
-    if not request.user.is_authenticated:
-        return redirect('login')
+    materiais = Material.objects.filter(usuario=request.user).order_by('-data_envio')
+    return render(request, 'clickestudosAPP/dashboard.html', {'materiais': materiais})
 
-    return render(request, 'dashboard.html')
-    
+@login_required
+def upload_material(request):
+    if request.method == 'POST':
+        form = MaterialForm(request.POST, request.FILES)
+        if form.is_valid():
+            material = form.save(commit=False)
+            material.usuario = request.user
+            material.save()
+            messages.success(request, 'Material enviado com sucesso!')
+            return redirect('dashboard')
+        else:
+            messages.error(request, 'Erro no envio. Verifique os dados e tente novamente.')
+    else:
+        form = MaterialForm()
+    return render(request, 'upload.html', {'form': form})
+
+@login_required
 def logout_view(request):
     logout(request)
+    messages.info(request, 'Você saiu da sua conta.')
     return redirect('login')
 
 def cadastro(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        confirm_password = request.POST['confirm_password']
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
 
         if password != confirm_password:
             messages.error(request, 'As senhas não conferem.')
@@ -58,5 +77,16 @@ def cadastro(request):
 def home(request):
     return render(request, 'clickestudosAPP/home.html')
 
-def disciplina(request):
-    return render(request, 'clickestudosAPP/disciplina.html')
+def deletar_material(request, pk):
+    material = get_object_or_404(Material, pk=pk)
+
+    if material.usuario != request.user:
+        messages.error(request, 'Você não tem permissão para deletar este material.')
+        return redirect('dashboard')
+
+    if request.method == 'POST':
+        material.delete()
+        messages.success(request, 'Material deletado com sucesso.')
+        return redirect('dashboard')
+
+    return render(request, 'clickestudosAPP/confirmar_delecao.html', {'material': material})
