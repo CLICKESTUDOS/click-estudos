@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Click Estudo - Tela de Disciplina</title>
+  <link rel="stylesheet" href="disciplina.css" />
+</head>
+<body>
+  <header>
+    <img src="logo-clickestudo.jpeg" alt="Logo Click Estudo" class="logo" />
+  </header>
+
+  <div class="container">
+    <h2>MAT4162 - Cálculo a Várias Variáveis</h2>
+
+    <div class="button-box" onclick="toggleContent('lista')">
+      <h3>Listas de exercícios</h3>
+      <div id="lista" class="content">Aqui você pode colocar links para listas em PDF ou tarefas da matéria.</div>
+    </div>
+
+    <div class="button-box" onclick="toggleContent('slides')">
+      <h3>Slides</h3>
+      <div id="slides" class="content">Slides usados nas aulas da disciplina.</div>
+    </div>
+
+    <div class="button-box" onclick="toggleContent('resumos')">
+      <h3>Anotações e resumos</h3>
+      <div id="resumos" class="content">Resumos feitos por alunos ou professores.</div>
+    </div>
+
+    <div class="button-box" onclick="toggleContent('provas')">
+      <h3>Provas antigas</h3>
+      <div id="provas" class="content">Aqui vão provas anteriores, com ou sem gabarito.</div>
+    </div>
+
+    <div class="button-box" onclick="toggleContent('feedback')">
+      <h3>Horários e feedback de professores</h3>
+      <div id="feedback" class="content">Tabela com horários e avaliações dos professores.</div>
+    </div>
+
+    <div class="button-box" onclick="toggleContent('livros')">
+      <h3>Livros digitalizados</h3>
+      <div id="livros" class="content">Links para livros úteis na disciplina.</div>
+    </div>
+
+    <div class="button-box" onclick="toggleContent('troca')">
+      <h3>Troca de materiais</h3>
+      <div id="troca" class="content">Espaço para enviar ou pegar materiais de colegas.</div>
+    </div>
+
+    <div class="button-box" onclick="toggleContent('venda')">
+      <h3>Venda de materiais</h3>
+      <div id="venda" class="content">Área para comprar ou vender livros, apostilas, etc.</div>
+    </div>
+
+    <div class="button-box" onclick="toggleContent('forum')">
+      <h3>Fórum de dúvidas da disciplina</h3>
+      <div id="forum" class="content">Poste dúvidas e ajude colegas.</div>
+    </div>
+  </div>
+
+  <script>
+    function toggleContent(id) {
+      const element = document.getElementById(id);
+      element.style.display = element.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>
