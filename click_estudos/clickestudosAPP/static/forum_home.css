@@ -1,0 +1,75 @@
+/* Fundo amarelo para o body */
+body {
+  background-color: #ffd500;
+  color: black; /* texto padrão preto */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+/* Header com fundo preto e textos brancos */
+header {
+  background-color: #000000; /* preto */
+  padding: 2rem 1rem;
+  text-align: center;
+  color: white;
+}
+
+header h1,
+header h2,
+header h3,
+header h4,
+header h5,
+header h6 {
+  color: #e6c200;
+  font-weight: 700;
+}
+
+header p {
+  color: #ddd; /* branco clarinho para o parágrafo */
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Cartões */
+.card {
+  background-color: white;
+  color: black;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover do card */
+.card-hover:hover {
+  box-shadow: 0 0 15px rgba(0,0,0,0.15);
+  transform: translateY(-3px);
+  transition: all 0.3s ease;
+}
+
+/* Botões pretos com texto branco */
+.btn-primary {
+  background-color: #000000; /* preto */
+  border: none;
+  color: white;
+  font-weight: 600;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #222222; /* preto mais claro no hover */
+  color: white;
+}
+
+/* Outros */
+.flex-grow-1 {
+  flex-grow: 1;
+}

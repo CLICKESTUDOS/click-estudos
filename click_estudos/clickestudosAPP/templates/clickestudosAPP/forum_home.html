@@ -1,0 +1,57 @@
+{% extends 'clickestudosAPP/base.html' %}
+{% load static %}
+
+{% block title %}Fóruns - ClickEstudo{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'forum_home.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="py-4 text-center bg-black mb-4">
+  <div class="container">
+    <h1 class="fw-bold">Fóruns ClickEstudo</h1>
+    <p class="lead text">Escolha o fórum que deseja acessar e participar das discussões.</p>
+  </div>
+</header>
+
+<main class="container mb-5">
+  <div class="row justify-content-center gy-4">
+
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Fórum Aberto</h5>
+          <p class="card-text flex-grow-1">Participe de discussões gerais sobre diversos assuntos.</p>
+          <a href="{% url 'forum_home' %}" class="btn btn-warning mt-auto">Entrar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Fórum por Temas</h5>
+          <p class="card-text flex-grow-1">Explore diferentes tópicos organizados por temas específicos.</p>
+          <!--<a class="btn btn-warning mt-auto">Ver Temas</a>-->
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Fórum de Avaliação de Professores</h5>
+          <p class="card-text flex-grow-1">Avalie seus professores e confira os comentários dos colegas.</p>
+          <a href="{% url 'forum_avaliacao' %}" class="btn btn-warning mt-auto">Acessar Fórum</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Se precisar, pode adicionar JS aqui -->
+{% endblock %}

@@ -3,8 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Material
-from .forms import MaterialForm
+from .models import Material, Avaliacao
+from .forms import MaterialForm, AvaliacaoForm
 
 def index(request):
     if request.method == 'POST':
@@ -90,3 +90,54 @@ def deletar_material(request, pk):
         return redirect('dashboard')
 
     return render(request, 'clickestudosAPP/confirmar_delecao.html', {'material': material})
+
+@login_required
+def forum_avaliacao(request):
+    if request.method == 'POST':
+        professor = request.POST.get('professor')
+        texto = request.POST.get('avaliacao')
+        nota = request.POST.get('nota')
+
+        if professor and texto and nota:
+            Avaliacao.objects.create(
+                professor=professor,
+                texto=texto,
+                nota=int(nota),
+                usuario=request.user  # <-- Aqui, associe o usuário logado
+            )
+        return redirect('forum_avaliacao')
+
+    avaliacoes = Avaliacao.objects.order_by('-data_envio')
+    return render(request, 'clickestudosAPP/profAval.html', {'avaliacoes': avaliacoes})
+@login_required
+def editar_avaliacao(request, pk):
+    avaliacao = get_object_or_404(Avaliacao, pk=pk, usuario=request.user)
+
+    if request.method == "POST":
+        form = AvaliacaoForm(request.POST, instance=avaliacao)
+        if form.is_valid():
+            form.save()
+            return redirect('forum_avaliacao')
+    else:
+        form = AvaliacaoForm(instance=avaliacao)
+
+    return render(request, 'clickestudosAPP/editar_avaliacao.html', {'form': form})
+
+@login_required
+def deletar_avaliacao(request, pk):
+    avaliacao = get_object_or_404(Avaliacao, pk=pk, usuario=request.user)
+
+    if request.method == 'POST':
+        avaliacao.delete()
+        return redirect('forum_avaliacao')
+
+    return render(request, 'clickestudosAPP/confirmar_delecao_avaliacao.html', {'avaliacao': avaliacao})
+
+def sobre(request):
+    return render(request, 'clickestudosAPP/sobre.html')
+
+def forum_home(request):
+    return render(request, 'clickestudosAPP/forum_home.html')
+
+def disciplinas(request):
+    return render(request,  'clickestudosAPP/disciplina.html')

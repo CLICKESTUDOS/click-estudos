@@ -1,0 +1,107 @@
+{% extends 'clickestudosAPP/base.html' %}
+{% load static %}
+
+{% block title %}Fórum de Avaliação - ClickEstudo{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'profAval.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="py-4 text-center bg-black mb-4">
+  <div class="container">
+    <h1 class="fw-bold">Fórum de Avaliação de Professores</h1>
+    <p class="lead text">Avalie seus professores e veja os comentários dos colegas!</p>
+  </div>
+</header>
+
+<main class="container mb-5">
+  <div class="row">
+    <!-- Formulário Envio -->
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Enviar Avaliação</h5>
+          <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="professor" class="form-label fw-bold">Professor:</label>
+              <input type="text" id="professor" name="professor" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label for="avaliacao" class="form-label fw-bold">Sua avaliação:</label>
+              <textarea id="avaliacao" name="avaliacao" rows="5" class="form-control" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="nota" class="form-label fw-bold">Nota (0 a 10):</label>
+              <input type="number" id="nota" name="nota" min="0" max="10" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-warning fw-bold w-100">Enviar Avaliação</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comentários -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Comentários dos Alunos</h5>
+
+          {% if avaliacoes %}
+            {% for avaliacao in avaliacoes %}
+              <div class="list-group-item mb-3 rounded border">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <strong>{{ avaliacao.professor }}</strong>
+                  <span class="badge bg-warning text-dark">{{ avaliacao.nota }}/10</span>
+                </div>
+                <p>{{ avaliacao.texto }}</p>
+                <small class="text-muted">{{ avaliacao.data_envio|date:"d/m/Y H:i" }}</small>
+
+                {% if avaliacao.usuario == request.user %}
+                  <div class="mt-2">
+                    <a href="{% url 'editar_avaliacao' avaliacao.pk %}" class="btn btn-sm btn-outline-primary me-2">
+                      Editar
+                    </a>
+
+                    <!-- Botão para abrir modal -->
+                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalExcluir{{ avaliacao.pk }}">
+                      Excluir
+                    </button>
+                  </div>
+
+                  <!-- Modal individual para exclusão -->
+                  <div class="modal fade" id="modalExcluir{{ avaliacao.pk }}" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <form method="post" action="{% url 'deletar_avaliacao' avaliacao.pk %}" class="modal-content text-dark">
+                        {% csrf_token %}
+                        <div class="modal-header">
+                          <h5 class="modal-title">Confirmar Exclusão</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Tem certeza que deseja excluir a avaliação de "<strong>{{ avaliacao.professor }}</strong>"?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                          <button type="submit" class="btn btn-danger">Excluir</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          {% else %}
+            <p class="text-center text-muted">Seja o primeiro a avaliar um professor!</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

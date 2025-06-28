@@ -10,3 +10,13 @@ class Material(models.Model):
 
     def __str__(self):
         return self.titulo
+
+class Avaliacao(models.Model):
+    professor = models.CharField(max_length=100)
+    texto = models.TextField()
+    nota = models.IntegerField()
+    data_envio = models.DateTimeField(auto_now_add=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)  # <- este campo é ESSENCIAL
+
+    def __str__(self):
+        return f'{self.professor} - {self.nota}'

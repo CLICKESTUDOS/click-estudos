@@ -14,6 +14,12 @@ urlpatterns = [
     path('cadastro/', views.cadastro, name='cadastro'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('upload/', views.upload_material, name='upload_material'),
+    path('forum-home/', views.forum_home, name='forum_home'),
+    path('forum-avaliacao/', views.forum_avaliacao, name='forum_avaliacao'),
+    path('sobre/', views.sobre, name='sobre'),
+    path('disciplinas/', views.disciplinas, name='disciplinas'),
+    path('forum-avaliacao/editar/<int:pk>/', views.editar_avaliacao, name='editar_avaliacao'),
+    path('forum-avaliacao/deletar/<int:pk>/', views.deletar_avaliacao, name='deletar_avaliacao'),
     path('material/<int:pk>/deletar/', views.deletar_material, name='deletar_material')
 ]
 

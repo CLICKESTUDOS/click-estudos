@@ -1,3 +1,4 @@
+/* Reset básico */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -7,39 +8,39 @@ body {
   background-color: #ffd500;
 }
 
-/* Logo na navbar */
-.logo {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  border-radius: 6px;
-}
-
-/* Navbar compacta */
-.navbar {
-  padding-top: 0.4rem;
-  padding-bottom: 0.4rem;
-}
-
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-/* Hover dos cards */
+/* Hover do card */
 .card-hover:hover {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 15px rgba(0,0,0,0.15);
   transform: translateY(-3px);
   transition: all 0.3s ease;
 }
 
+/* Logo no navbar */
+.navbar-brand img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+}
+
+/* Botão escuro */
+.btn-yellow {
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-yellow:hover {
+  background-color: #e6c200;
+  color: #000;
+}
 /* Header */
 header {
-  background-color: #212529;
+  background-color: black;
   color: white;
-  padding: 3rem 1rem;
+  padding: 2rem 1rem;
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 header h1 {
@@ -53,6 +54,13 @@ header p {
 }
 
 /* Cards Section */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
 .card {
   background-color: white;
   border-radius: 1rem;
@@ -66,7 +74,7 @@ header p {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-.card h5 {
+.card h3 {
   font-weight: 600;
   margin-bottom: 0.75rem;
 }
@@ -77,27 +85,25 @@ header p {
 
 /* Footer */
 footer {
-  background-color: #fff;
-  color: #212529;
+  background-color: #212529;
+  color: white;
   text-align: center;
-  padding: 1rem 0;
-  border-top: 1px solid #dee2e6;
+  padding: 1rem;
 }
 
-footer .text-muted {
-  font-size: 0.9rem;
+/* Elementos Extras */
+.heart {
+  color: red;
 }
 
-footer .list-inline-item a {
-  text-decoration: none;
-  color: #6c757d;
+.small {
+  font-size: 0.85rem;
 }
 
-footer .list-inline-item a:hover {
-  color: #000;
-}
-
-/* Ícones */
-.bi {
-  font-size: 1.2rem;
+/* Logo (se quiser usar em outras páginas) */
+.logo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 1rem;
 }

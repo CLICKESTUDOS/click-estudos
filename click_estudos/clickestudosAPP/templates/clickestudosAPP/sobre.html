@@ -1,0 +1,46 @@
+{% extends 'clickestudosAPP/base.html' %}
+{% load static %}
+
+{% block title %}Sobre Nós | ClickEstudos{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'sobre.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="py-5 bg-black text-center">
+  <div class="container">
+    <h2 class="fw-bold">Sobre Nós</h2>
+    <p class="lead">Unimos praticidade, organização e colaboração para transformar sua jornada acadêmica.</p>
+  </div>
+</header>
+
+<!-- Content Section -->
+<main class="container my-5">
+  <section class="mb-5">
+    <h3 class="fw-bold">Quem somos?</h3>
+    <p>
+      O ClickEstudos nasceu da necessidade de tornar a vida universitária mais eficiente e colaborativa. 
+      Reunimos em uma única plataforma funcionalidades essenciais para estudantes: compartilhamento de materiais, 
+      troca de itens físicos, fóruns de dúvidas e avaliações anônimas de professores e disciplinas.
+    </p>
+  </section>
+
+  <section class="mb-5">
+    <h3 class="fw-bold">Nosso propósito</h3>
+    <p>
+      Acreditamos no poder do coletivo e da organização. Com o ClickEstudos, você economiza tempo, estuda melhor 
+      e ainda ajuda colegas com informações valiosas.
+    </p>
+  </section>
+
+  <section>
+    <h3 class="fw-bold">Por que confiar?</h3>
+    <p>
+      Somos estudantes como você. Desenvolvemos cada funcionalidade pensando nos desafios reais do ambiente 
+      universitário, com foco em acessibilidade, simplicidade e impacto positivo.
+    </p>
+  </section>
+</main>
+{% endblock %}
