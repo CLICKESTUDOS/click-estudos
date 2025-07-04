@@ -133,6 +133,14 @@ def deletar_avaliacao(request, pk):
 
     return render(request, 'clickestudosAPP/confirmar_delecao_avaliacao.html', {'avaliacao': avaliacao})
 
+@login_required
+def perfil(request):
+    materiais = Material.objects.filter(usuario=request.user).order_by('-data_envio')
+    return render(request, 'clickestudosAPP/perfil.html', {
+        'materiais': materiais,
+        'usuario': request.user
+    })
+    
 def sobre(request):
     return render(request, 'clickestudosAPP/sobre.html')
 

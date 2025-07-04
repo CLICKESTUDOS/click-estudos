@@ -1,0 +1,31 @@
+.nav-pills .nav-link {
+  color: black;
+  background-color: transparent;
+  border-radius: 0.375rem;
+  margin-bottom: 0.25rem;
+  border: 1px solid transparent;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-pills .nav-link:hover {
+  color: black;
+  background-color: #fff8b3; /* amarelo suave */
+}
+
+.nav-pills .nav-link.active {
+  color: #ffd500;  /* amarelo vivo */
+  background-color: transparent;
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.btn-custom {
+  background-color: #000; /* preto */
+  color: #ffd500; /* amarelo */
+  border: none;
+}
+
+.btn-custom:hover {
+  background-color: #333; /* preto mais claro no hover */
+  color: #ffd500;
+}

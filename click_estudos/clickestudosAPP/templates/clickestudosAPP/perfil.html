@@ -1,0 +1,81 @@
+{% extends 'clickestudosAPP/base.html' %}
+{% load static %}
+
+{% block title %}Perfil - ClickEstudo{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'perfil.css' %}">
+<style>
+  .nav-pills .nav-link.active {
+    background-color: #000;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row">
+    
+    <!-- Abas verticais -->
+    <div class="col-md-3 mb-3">
+      <div class="nav flex-column nav-pills" id="perfil-tabs" role="tablist">
+        <button class="nav-link active" id="info-tab" data-bs-toggle="pill" data-bs-target="#info" type="button">Informações Privadas</button>
+        <button class="nav-link" id="uploads-tab" data-bs-toggle="pill" data-bs-target="#uploads" type="button">Uploads Realizados</button>
+        <button class="nav-link disabled" type="button" title="Em breve...">Trocas/Doações</button>
+      </div>
+    </div>
+
+    <!-- Conteúdo das abas -->
+    <div class="col-md-9">
+      <div class="tab-content" id="perfil-tabs-content">
+
+        <!-- Aba: Informações -->
+        <div class="tab-pane fade show active" id="info" role="tabpanel">
+          <h4 class="mb-3">Dados da Conta</h4>
+          <p><strong>Usuário:</strong> {{ request.user.username }}</p>
+          <p><strong>Email:</strong> {{ request.user.email }}</p>
+
+          <a href="{% url 'password_change' %}" class="btn btn-custom mt-3">
+            <i class="bi bi-key"></i> Alterar Senha
+          </a>
+        </div>
+
+        <!-- Aba: Uploads -->
+        <div class="tab-pane fade" id="uploads" role="tabpanel">
+          <h4 class="mb-3">Materiais Enviados</h4>
+
+          {% if materiais %}
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+              {% for material in materiais %}
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ material.titulo }}</h5>
+                    <p class="card-text">{{ material.descricao }}</p>
+                    <small class="text-muted">Enviado em {{ material.data_upload|date:"d/m/Y H:i" }}</small>
+                  </div>
+                  <div class="card-footer d-flex justify-content-between">
+                    <a href="{{ material.arquivo.url }}" class="btn btn-outline-primary btn-sm" target="_blank">
+                      <i class="bi bi-eye"></i> Ver
+                    </a>
+                    <form method="POST" action="{% url 'deletar_material' material.pk %}" onsubmit="return confirm('Deseja realmente excluir este material?');">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash"></i> Excluir
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="alert alert-info">Você ainda não enviou materiais.</div>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

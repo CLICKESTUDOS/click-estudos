@@ -1,11 +1,34 @@
 /* Reset básico */
-body {
+html, body {
+  height: 100%;
   margin: 0;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffd500;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Faz o main ocupar todo o espaço disponível */
+main {
+  flex: 1 0 auto;
+}
+
+/* Footer não encolhe */
+footer {
+  background-color: #212529;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+
+  flex-shrink: 0;
 }
 
 /* Hover do card */
@@ -34,6 +57,7 @@ body {
   background-color: #e6c200;
   color: #000;
 }
+
 /* Header */
 header {
   background-color: black;
@@ -81,14 +105,6 @@ header p {
 
 .card p {
   margin: 0;
-}
-
-/* Footer */
-footer {
-  background-color: #212529;
-  color: white;
-  text-align: center;
-  padding: 1rem;
 }
 
 /* Elementos Extras */
